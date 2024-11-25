@@ -7,7 +7,7 @@ provider "aws" {
 resource "aws_vpc" "main_vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "SashaVPC"
+    Name = "SashaVPCS"
   }
 }
 
@@ -17,13 +17,13 @@ resource "aws_subnet" "main_subnet" {
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1a" # Change this to your desired AZ
   tags = {
-    Name = "SashaSubnet"
+    Name = "SashaSubnetS"
   }
 }
 
 resource "aws_security_group" "allow_all" {
   vpc_id = aws_vpc.main_vpc.id
-  name   = "sasha_allo_all_sg"
+  name   = "sasha_allo_all_sgS"
 
   ingress {
     from_port   = 0
@@ -53,7 +53,7 @@ resource "aws_instance" "main_instance" {
     aws_security_group.allow_all.id
   ]
   tags = {
-    Name       = "SashaInstance2"
+    Name       = "SashaInstance2S"
     team       = "platform"
     product    = "global"
     service    = "merchantview"
