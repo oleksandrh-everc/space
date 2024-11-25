@@ -23,7 +23,7 @@ resource "aws_subnet" "main_subnet" {
 
 resource "aws_security_group" "allow_all" {
   vpc_id = aws_vpc.main_vpc.id
-  name   = "sasha_allo_all_sgS"
+  name   = "sasha_allo_all_sg"
 
   ingress {
     from_port   = 0
