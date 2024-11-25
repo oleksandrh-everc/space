@@ -1,5 +1,3 @@
-
-
 provider "aws" {
   region = "us-east-1" # Change this to your desired region
 }
@@ -44,9 +42,3 @@ resource "aws_security_group" "allow_all" {
   }
 }
 
-
-  metadata_options {
-    http_tokens = "required"
-  }
-
-}
