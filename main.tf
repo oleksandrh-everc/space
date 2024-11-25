@@ -44,22 +44,7 @@ resource "aws_security_group" "allow_all" {
   }
 }
 
-resource "aws_instance" "main_instance" {
-  ami           = "ami-08c40ec9ead489470" # Replace with an appropriate AMI ID for your region
-  instance_type = "t2.micro"
-  subnet_id     = aws_subnet.main_subnet.id
-  associate_public_ip_address = false
-  vpc_security_group_ids = [
-    aws_security_group.allow_all.id
-  ]
-  tags = {
-    Name       = "SashaInstance2S"
-    team       = "platform"
-    product    = "global"
-    service    = "merchantview"
-    created-by = "terraform"
-    is-prod    = "false"
-  }
+
   metadata_options {
     http_tokens = "required"
   }
