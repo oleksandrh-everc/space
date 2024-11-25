@@ -1,13 +1,4 @@
-terraform { 
-  cloud { 
-    
-    organization = "test_sasha" 
 
-    workspaces { 
-      name = "test" 
-    } 
-  } 
-}
 
 provider "aws" {
   region = "us-east-1" # Change this to your desired region
