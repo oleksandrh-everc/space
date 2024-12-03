@@ -9,7 +9,9 @@ jobs:
     # Define a matrix with your folders
     strategy:
       matrix:
-        folder: [foo, bar] # Add folder names here
+        folder: ${{ fromJson(env.FOLDER_LIST) }}
+    env:
+      FOLDER_LIST: ${{ vars.FOLDER_LIST }}
     steps:
 
 
