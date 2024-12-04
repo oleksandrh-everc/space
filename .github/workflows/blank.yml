@@ -1,4 +1,4 @@
-name: test
+name: everdrift
 
 on:
   workflow_dispatch:
