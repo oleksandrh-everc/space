@@ -5,16 +5,25 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-24.04
-    # Define a matrix with your folders
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Load folders from FOLDER_LIST
+        id: load-folders
+        run: |
+          echo "matrix=$(echo '${{ vars.FOLDER_LIST }}' | tr '\n' ' ' | jq -R -s -c 'split(" ")')" >> $GITHUB_ENV
+
     strategy:
       matrix:
-        folder: ${{ fromJson(env.FOLDER_LIST) }}
-    env:
-      FOLDER_LIST: ${{ vars.FOLDER_LIST }}
+        folder: ${{ fromJson(env.matrix) }}
+        
+  deploy2:
+    needs: deploy
+    runs-on: ubuntu-latest
     steps:
 
 
       - name: Deploy for folder ${{ matrix.folder }}
         run: |
-          echo "Deploying for folder: ${{ matrix.folder }}"
+          echo "Deploying folder: ${{ matrix.folder }}"
+
