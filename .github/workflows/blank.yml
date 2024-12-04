@@ -23,6 +23,7 @@ jobs:
         matrix:
             folder: ${{ fromJson(needs.list-folders.outputs.matrix) }}
     steps: 
+      - uses: actions/checkout@v2
       - run: |
           pwd
           ls -la
