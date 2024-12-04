@@ -48,7 +48,7 @@ def main():
     # Check if the file exists
     if os.path.exists("exluded.everdrift"):
         # Read existing entries from the file into a set
-        with open("test.txt", "r") as file:
+        with open("exluded.everdrift", "r") as file:
             existing_resources = set(line.strip() for line in file)
 
     # Parse the output for resource changes
