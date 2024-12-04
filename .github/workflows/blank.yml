@@ -4,22 +4,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  list-folders:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-folders.outputs.folders }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: set-folders
+        run: echo "::set-output name=folders::$(cat folders.everdrift | jq -R -s -c 'split("\n")[:-1]')"
+  check:
+    needs: list-folders
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        folder: ${{ fromJson(env.FOLDER_LIST) }}
-    env:
-      FOLDER_LIST: ${{ vars.FOLDER_LIST }} # Reference the GitHub variable here
-    steps:
-
-
-      - name: Deploy for folder ${{ matrix.folder }}
-        run: |
+        matrix:
+            folder: ${{ fromJson(needs.list-folders.outputs.matrix) }}
+    steps: 
+      - run: |
           echo "Deploying for folder: ${{ matrix.folder }}"
-
-
-
 
 
 
