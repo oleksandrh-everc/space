@@ -25,9 +25,12 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
       - run: |
+          rootDir=`pwd`
+          everdrift=$rootDir/everdrift.py
+          cd ${{ matrix.folder }}
           pwd
-          ls -la
-          echo "Deploying for folder: ${{ matrix.folder }}"
+          echo $everdrift
+          python3 everdrift
 
 
   slack-notify:
