@@ -34,6 +34,7 @@ jobs:
           cd ${{ matrix.folder }}
           pwd
           echo $everdrift
+          terraform init
           python3 $everdrift
 
 
