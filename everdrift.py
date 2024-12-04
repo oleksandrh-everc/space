@@ -46,7 +46,7 @@ def main():
     existing_resources = set()
 
     # Check if the file exists
-    if os.path.exists("test.txt"):
+    if os.path.exists("exluded.everdrift"):
         # Read existing entries from the file into a set
         with open("test.txt", "r") as file:
             existing_resources = set(line.strip() for line in file)
