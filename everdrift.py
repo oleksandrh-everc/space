@@ -1,6 +1,7 @@
 import subprocess
 import re
 import sys
+import os
 
 def run_terraform_plan():
     """Runs `terraform plan` and captures its output."""
@@ -42,8 +43,13 @@ def main():
     if not output:
         return
 
-    with open("exluded.everdrift", "r") as file:
-        existing_resources = set(line.strip() for line in file)
+    existing_resources = set()
+
+    # Check if the file exists
+    if os.path.exists("test.txt"):
+        # Read existing entries from the file into a set
+        with open("test.txt", "r") as file:
+            existing_resources = set(line.strip() for line in file)
 
     # Parse the output for resource changes
     changes = parse_terraform_output(output)
@@ -62,4 +68,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
