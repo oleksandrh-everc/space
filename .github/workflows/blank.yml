@@ -4,15 +4,18 @@ on:
   workflow_dispatch:
 
 jobs:
+
   list-folders:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-folders.outputs.folders }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v3
       - id: set-folders
         run: echo "::set-output name=folders::$(cat folders.everdrift | jq -R -s -c 'split("\n")[:-1]')"
-  check:
+
+        
+  everdrift:
     needs: list-folders
     runs-on: ubuntu-latest
     strategy:
@@ -20,7 +23,18 @@ jobs:
             folder: ${{ fromJson(needs.list-folders.outputs.matrix) }}
     steps: 
       - run: |
+          pwd
+          ls -la
           echo "Deploying for folder: ${{ matrix.folder }}"
+
+
+  slack-notify:
+    if: failure()
+    needs: everdrift
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "TO DO"
 
 
 
