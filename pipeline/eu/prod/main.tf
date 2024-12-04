@@ -1,6 +1,5 @@
 provider "aws" {
-  region = "us-east-1" # Change this to your desired region
-  profile = "dev"
+  region = "us-east-1"
 }
 
 resource "aws_vpc" "main_vpc" {
