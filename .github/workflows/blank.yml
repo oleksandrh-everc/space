@@ -10,9 +10,16 @@ jobs:
       matrix:
         folder: ${{ fromJson(env.FOLDER_LIST) }}
     env:
-      FOLDER_LIST: ${{ vars.FOLDER_LIST }} 
+      FOLDER_LIST: ${{ vars.FOLDER_LIST }} # Reference the GitHub variable here
     steps:
+
 
       - name: Deploy for folder ${{ matrix.folder }}
         run: |
           echo "Deploying for folder: ${{ matrix.folder }}"
+
+
+
+
+
+
