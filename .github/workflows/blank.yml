@@ -11,19 +11,19 @@ jobs:
       - name: Load folders from FOLDER_LIST
         id: load-folders
         run: |
-          echo "matrix=$(echo '${{ vars.FOLDER_LIST }}' | tr '\n' ' ' | jq -R -s -c 'split(" ")')" >> $GITHUB_ENV
+          echo "matrix=$(echo '${{ vars.FOLDER_LIST }}' | tr '\n' ' ' | jq -R -s -c 'split(" ")')" 
 
-    strategy:
-      matrix:
-        folder: ${{ fromJson(env.matrix) }}
+    # strategy:
+    #   matrix:
+    #     folder: ${{ fromJson(env.matrix) }}
         
-  deploy2:
-    needs: deploy
-    runs-on: ubuntu-latest
-    steps:
+  # deploy2:
+  #   needs: deploy
+  #   runs-on: ubuntu-latest
+  #   steps:
 
 
-      - name: Deploy for folder ${{ matrix.folder }}
-        run: |
-          echo "Deploying folder: ${{ matrix.folder }}"
+  #     - name: Deploy for folder ${{ matrix.folder }}
+  #       run: |
+  #         echo "Deploying folder: ${{ matrix.folder }}"
 
