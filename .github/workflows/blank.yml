@@ -3,6 +3,10 @@ name: test
 on:
   workflow_dispatch:
 
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
 jobs:
 
   list-folders:
@@ -30,7 +34,7 @@ jobs:
           cd ${{ matrix.folder }}
           pwd
           echo $everdrift
-          python3 everdrift
+          python3 $everdrift
 
 
   slack-notify:
