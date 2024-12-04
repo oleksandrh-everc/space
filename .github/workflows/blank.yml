@@ -15,7 +15,6 @@ jobs:
       matrix: ${{ steps.set-folders.outputs.folders }}
     steps:
       - uses: actions/checkout@v2
-      - uses: hashicorp/setup-terraform@v3
       - id: set-folders
         run: echo "::set-output name=folders::$(cat folders.everdrift | jq -R -s -c 'split("\n")[:-1]')"
 
@@ -28,6 +27,7 @@ jobs:
             folder: ${{ fromJson(needs.list-folders.outputs.matrix) }}
     steps: 
       - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v3
       - run: |
           rootDir=`pwd`
           everdrift=$rootDir/everdrift.py
