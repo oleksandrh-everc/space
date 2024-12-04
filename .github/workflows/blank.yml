@@ -6,7 +6,7 @@ on:
 jobs:
 
   list-folders:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       matrix: ${{ steps.set-folders.outputs.folders }}
     steps:
@@ -18,7 +18,7 @@ jobs:
         
   everdrift:
     needs: list-folders
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
         matrix:
             folder: ${{ fromJson(needs.list-folders.outputs.matrix) }}
@@ -33,7 +33,7 @@ jobs:
   slack-notify:
     if: failure()
     needs: everdrift
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: |
           echo "TO DO"
